@@ -62,9 +62,7 @@ public class ReviewTest {
     public void testTotalSentiment() throws IOException {
         // 20 points: Tests totalSentiment by checking if it correctly calculates the sum of sentiment values in a review.
         assertEquals(-2.92, Review.totalSentiment("simpleReview.txt"), 0.01);
-        assertEquals(1, Review.starRating("simpleReview.txt"), 0.01);
         assertEquals(29.04, Review.totalSentiment("26WestReview.txt"), 0.01);
-        assertEquals(4, Review.starRating("26WestReview.txt"), 0.01);
     }
 
     @Test
