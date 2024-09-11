@@ -87,19 +87,19 @@ JUnit tests have been provided in `ReviewTest.java` to help verify your method i
 
 ### Test Descriptions and Point Values
 
-1. **`testTotalSentiment`** - **20 points**  
+1. **`testTotalSentiment`** - **40 points**  
    This test checks whether the `totalSentiment` method correctly calculates the sum of sentiment values for a review.
 
-2. **`testStarRating`** - **20 points**  
+2. **`testStarRating`** - **30 points**  
    This test verifies the `starRating` method to ensure it accurately assigns star ratings based on the review's total sentiment value.
 
-3. **`testFakeReview`** - **20 points**  
+3. **`testFakeReview`** - **10 points**  
    This test ensures that the `fakeReview` method replaces adjectives in the review with random adjectives from the positive or negative lists as appropriate.
 
-4. **`testFakeReviewPositive`** - **20 points**  
+4. **`testFakeReviewPositive`** - **10 points**  
    This test checks if the `fakeReview` method can generate a positive review by confirming the presence of positive words.
 
-5. **`testFakeReviewNegative`** - **20 points**  
+5. **`testFakeReviewNegative`** - **10 points**  
    This test verifies if the `fakeReview` method can generate a negative review by confirming the presence of negative words.
 
 ### Total Points: 100
