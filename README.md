@@ -2,6 +2,10 @@
 
 This lab is designed for Mr. Hare's APCS-A class, focusing on text sentiment analysis and review generation. The project includes a set of methods that students need to implement in the `Review` class, along with JUnit tests to verify their functionality.
 
+## Optional Worksheet
+
+[This worksheet](https://csplusplus.com/wp-content/uploads/2024/09/Consumer-Review-Lab-Worksheet.docx) is base on the College Board's [Activity Handout](https://apcentral.collegeboard.org/media/pdf/ap-computer-science-a-consumer-review-lab-student-guide.pdf) and can be use to along with this project.
+
 ## Project Structure
 
 - **`Review.java`**: Contains method headers and task descriptions related to sentiment analysis and review generation. Students are required to implement the method bodies.
