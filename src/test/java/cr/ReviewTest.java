@@ -63,6 +63,7 @@ public class ReviewTest {
         // 20 points: Tests totalSentiment by checking if it correctly calculates the sum of sentiment values in a review.
         assertEquals(-2.92, Review.totalSentiment("simpleReview.txt"), 0.01);
         assertEquals(29.04, Review.totalSentiment("26WestReview.txt"), 0.01);
+        assertEquals(2.2, Review.totalSentiment("positiveReview.txt"), 0.01);
     }
 
     @Test
@@ -72,6 +73,8 @@ public class ReviewTest {
         assertEquals(4, Review.starRating("26WestReview.txt"));
         // Test 1-star rating
         assertEquals(1, Review.starRating("negativeReview.txt"));
+        // Test 2-star rating
+        assertEquals(2, Review.starRating("positiveReview.txt"));
     }
 
     @Test
