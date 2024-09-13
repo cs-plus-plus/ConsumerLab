@@ -61,7 +61,7 @@ public class ReviewTest {
 
     @Test
     public void testTotalSentiment() throws IOException {
-        // 20 points: Tests totalSentiment by checking if it correctly calculates the sum of sentiment values in a review.
+        // 40 points: Tests totalSentiment by checking if it correctly calculates the sum of sentiment values in a review.
         assertEquals(-2.92, Review.totalSentiment("simpleReview.txt"), 0.01);
         assertEquals(29.04, Review.totalSentiment("26WestReview.txt"), 0.01);
         assertEquals(2.2, Review.totalSentiment("positiveReview.txt"), 0.01);
@@ -69,7 +69,7 @@ public class ReviewTest {
 
     @Test
     public void testStarRating() throws IOException {
-        // 20 points: Tests starRating by ensuring that the star rating matches the calculated total sentiment value.
+        // 30 points: Tests starRating by ensuring that the star rating matches the calculated total sentiment value.
         // Test 4-star rating
         assertEquals(4, Review.starRating("26WestReview.txt"));
         // Test 1-star rating
@@ -80,7 +80,7 @@ public class ReviewTest {
 
     @Test
     public void testFakeReview() throws IOException {
-        // 20 points: Tests fakeReview by verifying it replaces adjectives with random ones from the lists.
+        // 10 points: Tests fakeReview by verifying it replaces adjectives with random ones from the lists.
         
         // Generate the fake review
         String fakeReview = Review.fakeReview("fakeReview.txt", true);
@@ -106,7 +106,7 @@ public class ReviewTest {
 
     @Test
     public void testFakeReviewPositive() throws IOException {
-        // 20 points: Tests if the fakeReview method correctly generates a positive review.
+        // 10 points: Tests if the fakeReview method correctly generates a positive review.
         // Assuming fakeReview is modified to generate positive reviews
 
         // Read the original negative review and calculate its total sentiment
@@ -131,7 +131,7 @@ public class ReviewTest {
 
     @Test
     public void testFakeReviewNegative() throws IOException {
-        // 20 points: Tests if the fakeReview method correctly generates a negative review.
+        // 10 points: Tests if the fakeReview method correctly generates a negative review.
         // Assuming fakeReview is modified to generate negative reviews
 
         // Read the original positive review and calculate its total sentiment
