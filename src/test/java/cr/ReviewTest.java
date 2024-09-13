@@ -1,5 +1,6 @@
 package cr;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -80,10 +81,25 @@ public class ReviewTest {
     @Test
     public void testFakeReview() throws IOException {
         // 20 points: Tests fakeReview by verifying it replaces adjectives with random ones from the lists.
-        // Test fake review
+        
+        // Generate the fake review
         String fakeReview = Review.fakeReview("fakeReview.txt", true);
+
+        // Check that the generated review is not the same as the original text
         assertNotEquals("The *quick *brown fox jumps over the *lazy dog.", fakeReview);
+
+        // Ensure that the review still has the context of "fox jumps over the"
         assertTrue(fakeReview.contains("fox jumps over the"));
+
+        // Check that the review does not contain any asterisks ('*'), indicating adjectives were replaced
+        assertFalse(fakeReview.contains("*"));
+
+        // Ensure that the words "quick," "brown," and "lazy" are not present in the fake review
+        assertFalse(fakeReview.toLowerCase().contains("quick"));
+        assertFalse(fakeReview.toLowerCase().contains("brown"));
+        assertFalse(fakeReview.toLowerCase().contains("lazy"));
+
+        // Check that the review contains at least one word with a sentiment value (positive or negative)
         boolean containsSentimentWord = containsSentimentWord(fakeReview);
         assertTrue(containsSentimentWord); // Checks if the review has any positive or negative words
     }
@@ -92,19 +108,52 @@ public class ReviewTest {
     public void testFakeReviewPositive() throws IOException {
         // 20 points: Tests if the fakeReview method correctly generates a positive review.
         // Assuming fakeReview is modified to generate positive reviews
+
+        // Read the original negative review and calculate its total sentiment
+        double originalSentiment = Review.totalSentiment("negativeReview.txt");
+
+        // Generate a positive fake review
         String positiveFakeReview = Review.fakeReview("negativeReview.txt", true);
+
+        // Ensure that the review does not contain any asterisks ('*')
+        assertFalse(positiveFakeReview.contains("*"));
+
+        // Check if the generated review contains at least one positive word
         boolean containsPositiveWord = containsPositiveWord(positiveFakeReview);
         assertTrue(containsPositiveWord); // Checks if the review contains at least one positive word
+
+        // Calculate the total sentiment of the positive fake review
+        double fakeReviewSentiment = Review.totalSentiment("fakeReview.txt");
+
+        // Ensure that the total sentiment of the fake review is greater than the original sentiment
+        assertTrue(fakeReviewSentiment > originalSentiment);
     }
 
     @Test
     public void testFakeReviewNegative() throws IOException {
         // 20 points: Tests if the fakeReview method correctly generates a negative review.
         // Assuming fakeReview is modified to generate negative reviews
+
+        // Read the original positive review and calculate its total sentiment
+        double originalSentiment = Review.totalSentiment("positiveReview.txt");
+
+        // Generate a negative fake review
         String negativeFakeReview = Review.fakeReview("positiveReview.txt", false);
+
+        // Ensure that the review does not contain any asterisks ('*')
+        assertFalse(negativeFakeReview.contains("*"));
+
+        // Check if the generated review contains at least one negative word
         boolean containsNegativeWord = containsNegativeWord(negativeFakeReview);
         assertTrue(containsNegativeWord); // Checks if the review contains at least one negative word
+
+        // Calculate the total sentiment of the negative fake review
+        double fakeReviewSentiment = Review.totalSentiment("fakeReview.txt");
+
+        // Ensure that the total sentiment of the fake review is less than the original sentiment
+        assertTrue(fakeReviewSentiment < originalSentiment);
     }
+
 
     @Test
     public void testCheckCompilation() {
