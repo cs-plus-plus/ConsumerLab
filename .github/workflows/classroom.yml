@@ -1,0 +1,70 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: 'testTotalSentiment '
+      id: testtotalsentiment
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'testTotalSentiment '
+        setup-command: mvn compile
+        command: mvn -Dtest=ReviewTest#testTotalSentiment test
+        timeout: 3
+        max-score: 40
+    - name: 'testStarRating '
+      id: teststarrating
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 'testStarRating '
+        setup-command: mvn compile
+        command: mvn -Dtest=ReviewTest#testStarRating test
+        timeout: 3
+        max-score: 30
+    - name: testFakeReview
+      id: testfakereview
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testFakeReview
+        setup-command: mvn compile
+        command: mvn -Dtest=ReviewTest#testFakeReview test
+        timeout: 3
+        max-score: 10
+    - name: testFakeReviewPositive
+      id: testfakereviewpositive
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testFakeReviewPositive
+        setup-command: mvn compile
+        command: mvn -Dtest=ReviewTest#testFakeReviewPositive test
+        timeout: 3
+        max-score: 10
+    - name: testFakeReviewNegative
+      id: testfakereviewnegative
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: testFakeReviewNegative
+        setup-command: mvn compile
+        command: mvn -Dtest=ReviewTest#testFakeReviewNegative test
+        timeout: 3
+        max-score: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TESTTOTALSENTIMENT_RESULTS: "${{steps.testtotalsentiment.outputs.result}}"
+        TESTSTARRATING_RESULTS: "${{steps.teststarrating.outputs.result}}"
+        TESTFAKEREVIEW_RESULTS: "${{steps.testfakereview.outputs.result}}"
+        TESTFAKEREVIEWPOSITIVE_RESULTS: "${{steps.testfakereviewpositive.outputs.result}}"
+        TESTFAKEREVIEWNEGATIVE_RESULTS: "${{steps.testfakereviewnegative.outputs.result}}"
+      with:
+        runners: testtotalsentiment,teststarrating,testfakereview,testfakereviewpositive,testfakereviewnegative
